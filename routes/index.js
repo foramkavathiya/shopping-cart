@@ -2,6 +2,11 @@ var express = require('express');
 var router = express.Router();
 var Product = require('../models/product');
 
+var csrf = require('csurf');
+var passport = require('passport');
+var csrfProtection = csrf();
+router.use(csrfProtection);
+
 router.get('/', function(req, res, next) {
   Product.find(function(err, docs) {
       var productChunks = [];
