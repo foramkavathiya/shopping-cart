@@ -49,6 +49,11 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.use(function(req, res, next) {
+  res.locals.login = req.isAuthenticated();
+  next();
+});
+
 app.use('/user', userRoutes);
 app.use('/', routes);
 
